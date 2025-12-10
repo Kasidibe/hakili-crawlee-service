@@ -1,30 +1,12 @@
-FROM node:18-slim
-
-# Install system dependencies for Playwright
-RUN apt-get update && apt-get install -y \
-    wget git ca-certificates \
-    libasound2 libatk1.0-0 libatk-bridge2.0-0 \
-    libcups2 libdbus-1-3 libdrm2 libgbm1 libglib2.0-0 libgtk-3-0 \
-    libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxdamage1 \
-    libxfixes3 libxrandr2 libxss1 libxtst6 xdg-utils \
-    fonts-liberation libcurl4 \
-    && rm -rf /var/lib/apt/lists/*
+FROM mcr.microsoft.com/playwright:v1.57.0-jammy
 
 WORKDIR /app
 
-# Copy package files first
 COPY package*.json ./
-
-# Install node deps
 RUN npm install
 
-# Install Playwright browsers
-RUN npx playwright install chromium
-
-# Copy rest of source code
 COPY . .
 
-# Create storage directory
 RUN mkdir -p /app/storage
 
 CMD ["npm", "start"]
