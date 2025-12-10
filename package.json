@@ -1,0 +1,17 @@
+{
+  "name": "hakili-crawler",
+  "version": "1.0.0",
+  "description": "Crawlee project for Hakili",
+  "main": "crawler.js",
+  "type": "module",
+  "scripts": {
+    "start": "node crawler.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crawlee": "^3.12.3",
+    "playwright": "^1.43.0"
+  }
+}
